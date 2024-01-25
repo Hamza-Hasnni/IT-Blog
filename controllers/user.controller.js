@@ -30,7 +30,7 @@ const login = async (req, res, next) => {
             passwordValidation = await comparePassword(password, user.password)
         }
         if (passwordValidation) {
-            const token = jwt.sign({ userId: user._id }, "thespartaking", { expiresIn: "1hr" })
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1hr" })
             res.cookie("userAuth", token).json({ message: "login successfuly", userName: user.userName })
 
         } else {

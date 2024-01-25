@@ -3,7 +3,7 @@ const app = express()
 const port = process.env.PORT || 5000
 const dbConnection = require('./config/dbConnection')
 const cookieParser = require('cookie-parser')
-const { userRoutes } = require('./routes')
+const { userRoutes, blogRoutes } = require('./routes')
 
 /**********connecting to batabase ******** */
 dbConnection()
@@ -14,9 +14,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-/************ user routes *************** */
+/************ User routes *************** */
 app.use("/api/user", userRoutes)
 
+/************ Blog routes ************** */
+app.use("/api/blog", blogRoutes)
 
 
 
